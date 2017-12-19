@@ -38,11 +38,11 @@ public class verifyOTP extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// TODO Gets the OTP entered by the admin and verifies it
 		AdminOTPDAO a=new AdminOTPDAO();
 		int otp=Integer.parseInt(request.getParameter("otp"));
 		String uuid=a.verifyUserOTP(otp);
-		if(uuid!=null) {
+		if(uuid!=null) { //If verification successful, it will allow admin to add new password
 		HttpSession session=request.getSession();
 		session.setAttribute("key",uuid);
 		response.sendRedirect("change_password.jsp");	

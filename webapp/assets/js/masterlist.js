@@ -1,7 +1,3 @@
-/**
- *@author Asif
- *@date 16/12/2017
- */
 
 $(function(){
 	// code for jquery dataTable

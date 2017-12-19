@@ -15,6 +15,9 @@ import com.dev.mgm.db.MySessionFactory;
 
 public class AdminLogin {
 	private static Logger log=Logger.getLogger(AdminLogin.class);
+	/*
+	 * Checks the Admin's username and password while logging
+	 */
 	public static boolean checkLogin(Admin a) {
 		log.info("admin login check");
 		try {
@@ -27,23 +30,19 @@ public class AdminLogin {
 			log.info(a.getUname()+"------"+a.getPassword());
 			
 			
-			Admin admin=(Admin) cr.uniqueResult();
-			if(admin!=null) {
+			Admin admin=(Admin) cr.uniqueResult();// Returns the admin's username password as an object
+			if(admin!=null) { //Returns the success message if username and password is correct else failure
 				log.info("Login Sucessfully");
 				return true;
 			}else {
 				log.info("Login failed");
 				
-				
 			}
-			
-			
 			
 		}catch(HibernateException e) {
 			log.error("Admin Login check error" ,e);
 			
 		}
-		
 		
 		return false;
 	} 

@@ -26,6 +26,7 @@ public class AccountVerficationSMS {
 private static final String PASSWORD="Ranjit9600"*/;
 
 private String msg;
+//Method for sending SMS with OTP 
 public AccountVerficationSMS(String mobile_no,int otp) {
 	
 	//msg="httpapi/send?username="+USERNAME+"&password="+PASSWORD+"&sender_id=SMSIND&route=T&phonenumber="+u.getMobileno()+"&message=Dear%20"+u.getName()+"%2C%20Thanks%20for%20registering%20to%20our%20site.%20Your%20user%20id%20is%20"+u.getMobileno()+"%20your%20account%20verfication%20OTP%20is%20"+otp+"%20";
@@ -34,10 +35,8 @@ public AccountVerficationSMS(String mobile_no,int otp) {
 	sendMessage();
 
 }
-
-
 	
-
+/* Verifies the certificate */
 	private void sendMessage() {
 
 		try {

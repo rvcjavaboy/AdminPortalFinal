@@ -31,11 +31,12 @@ public class changepasswordServ extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
+		 * TODO: Takes an existing password and changes it to new one
+		 */
 		String  password=request.getParameter("password");
 		String 	newPassword=request.getParameter("newpassword");
 		PrintWriter out = response.getWriter();
-		//System.out.println("Password..."+password);
-		//System.out.println("New Password"+newPassword);
 		Admin a=new Admin();
 		a.setPassword(password);
 		a.setNewPassword(newPassword);

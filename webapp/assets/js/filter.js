@@ -1,7 +1,4 @@
-/**
- *@author Asif
- *@date 14/12/2017
- */
+
 $(document).on('change',"select#status",function(){
 	var count=1;
 	

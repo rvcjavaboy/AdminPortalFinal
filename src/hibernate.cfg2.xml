@@ -15,7 +15,6 @@
   <property name="hibernate.connection.pool_size">10</property>
   <property name="hbm2ddl.auto">update</property>
   
-
 <mapping class="com.admin.bean.AdminOTP"/>
 <mapping class="com.admin.bean.Device"/>
  <mapping class="com.admin.bean.Admin"/>

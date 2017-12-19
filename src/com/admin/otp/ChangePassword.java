@@ -11,6 +11,9 @@ import org.hibernate.Transaction;
 import com.admin.bean.Admin;
 import com.dev.mgm.db.MySessionFactory;
 
+/*
+ * Allow admin to change password after confirmation of OTP
+ */
 public class ChangePassword {
 	private static Logger log=Logger.getLogger(ChangePassword.class);
 	public static boolean changePassword(String pass,String cpass) {
@@ -21,8 +24,8 @@ public class ChangePassword {
 			Admin admin=session.get(Admin.class,1);
 			Transaction tx=session.beginTransaction();
 			if(admin!=null) {
-				admin.setPassword(pass);
-				admin.setNewPassword(cpass);
+				admin.setPassword(pass); 
+				admin.setNewPassword(cpass); // sets the new password
 				session.save(admin);
 				tx.commit();
 				log.info("password sucessfully chanaged");
