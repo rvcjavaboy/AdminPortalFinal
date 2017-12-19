@@ -28,7 +28,7 @@ public class forgotChangePassword extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// TODO forgot password scenario using OTP
 		String password=request.getParameter("newpwd");
 		String cpassword=request.getParameter("cpwd");
 		System.out.println(password+"\t"+cpassword);
@@ -40,10 +40,7 @@ public class forgotChangePassword extends HttpServlet {
 		else
 			response.sendRedirect("index.jsp?status=password changed failed");
 			
-		
-		
-		
-		
+			
 		
 	}
 

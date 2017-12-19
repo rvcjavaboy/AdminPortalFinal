@@ -28,7 +28,7 @@ public class sendOTP extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// TODO Sends the OTP to Admis's registered mobile number
 		
 		AdminOTPDAO.generateOTP();
 		response.sendRedirect("otp.jsp");

@@ -31,11 +31,15 @@ public class uploadExcel extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
+		 * TODO: Imports the excel sheet selected by the admin	
+		 */
 		Part file=request.getPart("file");
 		boolean status=ImportExcelDAO.importFile(file.getInputStream());
 	
+		
 		if(!status) {
-			response.sendRedirect("ErrorFileUpload.jsp");
+			response.sendRedirect("ErrorFileUpload.jsp");//If specified file is not in proper format
 			
 		}else {
 			response.sendRedirect("SuccessFileUpload.jsp");
