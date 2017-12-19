@@ -5,21 +5,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <%  
- response.setHeader("Cache-control","no-store"); //HTTP 1.1 
- response.setHeader("Pragma","no-cache"); //HTTP1.0 
- response.setDateHeader("Expire",0); //prevents caching at the proxy server 
- 
-	String uname=(String)session.getAttribute("uname");
-	String pass	=(String)session.getAttribute("pass");
-	Admin a=new Admin();
+<%
+	response.setHeader("Cache-control", "no-store"); //HTTP 1.1 
+	response.setHeader("Pragma", "no-cache"); //HTTP1.0 
+	response.setDateHeader("Expire", 0); //prevents caching at the proxy server 
+	/* session creation */
+	String uname = (String) session.getAttribute("uname");
+	String pass = (String) session.getAttribute("pass");
+	Admin a = new Admin();
 	a.setUname(uname);
 	a.setPassword(pass);
-	if(!AdminLogin.checkLogin(a)){
+	if (!AdminLogin.checkLogin(a)) { //if not successfull then redirect to index page
 		response.sendRedirect("index.jsp");
 	}
 %>
- 
+
 <title>Admin Home</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +29,6 @@
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<!-- <script src="assets/js/myapp.js"></script> -->
 <script src="assets/js/filter.js"></script>
 <script src="assets/js/masterlist.js"></script>
 <script
@@ -38,6 +37,7 @@
 	src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
 </head>
 <body>
+	<!-- navigation bar starting -->
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -54,24 +54,30 @@
 			</ul>
 		</div>
 	</nav>
-
+	<!-- navigation bar ending -->
+	<!-- single page tabs starting -->
 	<div class="container">
+		<!-- Tabs headers with links -->
 		<ul class="nav nav-tabs">
 			<li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-			<!-- <li><a data-toggle="tab" href="#menu1">Filter Logs</a></li> -->
+			<!-- tab 1 for home -->
 			<li><a data-toggle="tab" href="#menu2">Master List</a></li>
+			<!-- tab 2 for masterlist -->
 			<li><a data-toggle="tab" href="#menu3">Import</a></li>
+			<!-- tab 3 for Import file -->
 		</ul>
-
+		<!-- tab content start from here as per link provided -->
 		<div class="tab-content">
-						<div id="home" class="tab-pane fade in active">
+			<div id="home" class="tab-pane fade in active">
+				<!-- tab 1 for home -->
 				<h3>Logs</h3>
 				<hr />
-
+				<!-- filtering by username and status -->
 				<div class="col-lg-12">
 					<div class="col-sm-6 col-lg-4">
 						<div class="form-group">
-							<input type="text" id="search" class="search form-control" placeholder="Search by username" />
+							<input type="text" id="search" class="search form-control"
+								placeholder="Search by username" />
 						</div>
 					</div>
 					<div class="col-sm-6 col-lg-3">
@@ -84,7 +90,7 @@
 						</select><br />
 					</div>
 				</div>
-
+				<!-- data table for filter logs coming from filter.js -->
 				<table id="filterlogs" class="table table-striped table-bordered"
 					cellspacing="0" width="100%">
 					<thead>
@@ -98,17 +104,19 @@
 							<th>Device Status</th>
 						</tr>
 					</thead>
-					
+
 				</table>
-				 <ul class="pager">
+				<ul class="pager">
 					<li><button type="button" class="btn btn-success" id="prev">prev</button></li>
 					<li><button type="button" class="btn btn-success" id="next">next</button></li>
 				</ul>
 
 			</div>
 			<div id="menu2" class="tab-pane fade">
+				<!-- tab 2 for Master List -->
 				<h3>Master List</h3>
 				<hr />
+				<!-- data table for master list of devices coming from masterlist.js -->
 				<table id="masterlist" class="table table-striped table-bordered"
 					cellspacing="0" width="100%">
 					<thead>
@@ -120,8 +128,6 @@
 							<th>Valid Till</th>
 						</tr>
 					</thead>
-					
-
 				</table>
 				<ul class="pager">
 					<li style=""><button type="button" class="btn btn-success"
@@ -132,13 +138,12 @@
 			</div>
 
 			<div id="menu3" class="tab-pane fade">
+				<!-- tab 3 for Import File -->
 				<h3>Import File</h3>
 				<hr />
-
 				<form ENCTYPE="multipart/form-data" ACTION="uploadExcel" METHOD=POST
 					style="margin: auto; width: 50%;">
 					<br> <br> <br>
-
 					<table border="2">
 						<tr>
 							<td colspan="2"><p align="center">
@@ -146,20 +151,20 @@
 						</tr>
 						<tr>
 							<td><b>Choose the file To Upload:</b></td>
-							<td><input id="fileUpload" name="file" type="file" accept=".xls" required/> <br /></td>
+							<td><input id="fileUpload" name="file" type="file"
+								accept=".xls" required /> <br /></td>
 						</tr>
 						<tr>
 							<td colspan="2">
-							<p id="error1" style="display:none; color:#FF0000;">
-							Invalid File Format! File Format Must Be Either .xls.
-							</p>
-							<p id="error2" style="display:none; color:#FF0000;">
-							Maximum File Size Limit is 16MB.
-							</p>
-						<p align="right">
-							<input type="submit" id="btnUpload" class="btn btn-primary"
+								<p id="error1" style="display: none; color: #FF0000;">
+									Invalid File Format! File Format Must Be Either .xls.</p>
+								<p id="error2" style="display: none; color: #FF0000;">
+									Maximum File Size Limit is 16MB.</p>
+								<p align="right">
+									<input type="submit" id="btnUpload" class="btn btn-primary"
 										value="Upload" />
-								</p></td>
+								</p>
+							</td>
 						</tr>
 					</table>
 
@@ -171,6 +176,5 @@
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>
