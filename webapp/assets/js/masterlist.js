@@ -1,3 +1,6 @@
+/**
+ *@date 16/12/2017
+ */
 
 $(function(){
 	// code for jquery dataTable
@@ -8,7 +11,7 @@ $(function(){
 	sendAjaxRequest($(this),'http://adminwebservice-env.us-east-2.elasticbeanstalk.com/AdminService/viewdevice/'+count+'/10');
 	// execute the below code only where we have this table
 	if ($table.length) {
-		
+		//next and previous for loading data on request 
 	         $("#prevMaster").click(function(e){
 	        	
 	        	  count=count-1;

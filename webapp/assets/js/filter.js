@@ -1,4 +1,6 @@
-
+/**
+ *@date 14/12/2017
+ */
 $(document).on('change',"select#status",function(){
 	var count=1;
 	
@@ -26,11 +28,10 @@ $(function(){
     	var status=$('#status option:selected').val();
     	urlTosend=createURL(searchBy,status);
     	sendAjaxRequestForMaster($(this),urlTosend+'/'+count+'/10');
-    	// execute the below code only where we have this table
     });
    
     if ($table.length) {
-		
+		//next and previous for load further data on request
         $("#prev").click(function(e){
        	  count=count-1;
        	if(count!=1){
@@ -56,8 +57,6 @@ $(function(){
 		  else{
 			  $( "#prev" ).prop( "disabled", true );
 		  }
-       //	alert($table.data().count());
-       	
           var searchBy=$("#search").val();
 	  	  var status=$('#status option:selected').val();
 	  	  urlTosend=createURL(searchBy,status);
@@ -68,7 +67,7 @@ $(function(){
     
 });
 function createURL(searchBy,status){
-
+//for filter
 	if(!searchBy){
 		return 'http://adminwebservice-env.us-east-2.elasticbeanstalk.com/AdminService/filterlogs/'+status+'/search';
 		
